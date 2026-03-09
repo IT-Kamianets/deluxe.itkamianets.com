@@ -1,0 +1,105 @@
+/* ============================================
+   QuickInfoBar — icon + text columns
+   ============================================ */
+
+.bar {
+  padding-top: 0;
+  padding-bottom: var(--card-margin-y);
+  padding-inline: var(--card-margin-x);
+  margin-top: 0;
+  position: relative;
+  z-index: 20;
+}
+
+.inner {
+  background: var(--card-bg);
+  /* Matches bolder card system */
+  padding-block: clamp(16px, 2.5vw, 24px);
+  padding-inline: clamp(20px, 4vw, 40px);
+  backdrop-filter: var(--card-blur);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+}
+
+.list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--container-max);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  padding-inline: clamp(20px, 3vw, 48px);
+}
+
+.item+.item {
+  border-left: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.icon {
+  color: rgba(245, 240, 232, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(245, 240, 232, 0.55);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 767px) {
+  .bar {
+    padding-inline: 0;
+    padding-bottom: 40px;
+  }
+
+  .inner {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    background: rgba(21, 21, 21, 0.95);
+  }
+
+  .list {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .item {
+    flex: 0 0 50%;
+    padding: 20px 16px;
+    border-left: none !important;
+  }
+
+  .item:nth-child(2),
+  .item:nth-child(4) {
+    border-left: 1px solid rgba(245, 240, 232, 0.08) !important;
+  }
+
+  .item:nth-child(3),
+  .item:nth-child(4) {
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+  }
+}

@@ -1,0 +1,378 @@
+/* ============================================
+   Hero — framed editorial layout
+   ============================================ */
+
+/* ── Layout ──────────────────────────────── */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  /* Show global background */
+  height: 100svh;
+  /* Precisely the size of the main screen */
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding-top: clamp(60px, 8vw, 70px);
+  padding-bottom: clamp(60px, 8vw, 80px);
+  /* Restored to better balance */
+  padding-inline: var(--card-margin-x);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(13, 13, 12, 0.2));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Background image with blur */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/hero/hero-bg-blurred.webp');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  /* Even smaller blur for clarity */
+  transform: scale(1.04);
+  /* Prevent white edges from blur */
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+}
+
+/* ── Photo panel ─────────────────────────── */
+
+.photo {
+  flex: 0 0 58%;
+  background-image: url('/images/hero/hero-main.webp');
+  background-size: cover;
+  background-position: left center;
+  background-color: var(--color-dark);
+  position: relative;
+}
+
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+}
+
+/* ── Dark info panel ─────────────────────── */
+
+.panel {
+  flex: 0 0 42%;
+  background: var(--color-dark-warm);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.panelContent {
+  padding: 0 52px 60px 52px;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 400;
+
+  color: rgba(245, 240, 232, 0.68);
+  line-height: 1.65;
+  margin: 0 0 32px;
+}
+
+.ratings {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.ratingItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingDivider {
+  width: 1px;
+  height: 36px;
+  background: rgba(245, 240, 232, 0.12);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.ratingScore {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.5vw, 48px);
+  color: var(--color-cream);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  display: block;
+}
+
+.ratingDecimal {
+  font-size: 0.62em;
+  vertical-align: -0.12em;
+}
+
+.ratingMeta {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  color: rgba(245, 240, 232, 0.38);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-top: 7px;
+  display: block;
+  white-space: nowrap;
+}
+
+.cta {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid rgba(245, 240, 232, 0.55);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.cta:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(245, 240, 232, 0.3);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+.socialLink:hover {
+  color: rgba(245, 240, 232, 0.7);
+}
+
+/* ── Title group — straddles the seam ───── */
+
+.titleGroup {
+  position: absolute;
+  left: 46%;
+  top: 35%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 6.2vw, 92px);
+  font-weight: 300;
+
+  color: var(--color-cream);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  margin: 0;
+  text-align: left;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 6.2vw, 92px);
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  font-weight: 500;
+  margin: 12px 0 0;
+  text-align: right;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Accessibility ───────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}
+
+/* ── Mobile ──────────────────────────────── */
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 0;
+    height: auto;
+    min-height: 100svh;
+    background: var(--color-dark);
+  }
+
+  .hero::before,
+  .hero::after {
+    display: none;
+    /* Hide blurred background photos on mobile */
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    overflow: hidden;
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    min-height: 100svh;
+    z-index: 1;
+  }
+
+  .panel {
+    position: relative;
+    margin-top: auto;
+    z-index: 2;
+    background: linear-gradient(to top,
+        var(--color-dark) 0%,
+        rgba(21, 21, 21, 0.9) 55%,
+        transparent 100%);
+    padding-top: 120px;
+  }
+
+  .panelContent {
+    padding: 0 24px 80px;
+  }
+
+  .tagline {
+    font-size: var(--text-sm);
+    margin-bottom: 20px;
+  }
+
+  .ratings {
+    margin-bottom: 20px;
+    /* Tighter spacing */
+    gap: 14px;
+  }
+
+  .ratingScore {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .ratingDivider {
+    height: 28px;
+  }
+
+  .socials {
+    margin-top: 20px;
+    gap: 18px;
+  }
+
+  .cta {
+    display: block;
+    text-align: center;
+    padding: 15px 24px;
+  }
+
+  .titleGroup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    /* Lowered slightly for better balance */
+    transform: translateY(-50%);
+    padding: 0 24px;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: normal;
+  }
+
+  .subtitle {
+    font-size: clamp(34px, 8.5vw, 52px);
+    margin-bottom: 2px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(34px, 8.5vw, 52px);
+    text-align: center;
+  }
+}
+
+/* ── Tablet ──────────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    padding: 16px;
+  }
+
+  .photo {
+    flex: 0 0 52%;
+  }
+
+  .panel {
+    flex: 0 0 48%;
+  }
+
+  .panelContent {
+    padding: 0 36px 48px 40px;
+  }
+
+  .titleGroup {
+    left: 38%;
+  }
+
+  .title,
+  .subtitle {
+    font-size: clamp(48px, 5.5vw, 72px);
+  }
+}

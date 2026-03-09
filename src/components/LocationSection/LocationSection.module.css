@@ -1,0 +1,148 @@
+/* ============================================
+   LocationSection — Map + Info Card
+   ============================================ */
+
+.section {
+    padding-block: var(--card-margin-y);
+    padding-inline: var(--card-margin-x);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
+
+.inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    backdrop-filter: var(--card-blur);
+    overflow: hidden;
+    min-height: 480px;
+}
+
+/* ── Info Side ─────────────────────────────── */
+
+.info {
+    padding: clamp(40px, 6vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--eyebrow-font);
+    font-size: var(--eyebrow-size);
+    font-weight: 500;
+    letter-spacing: var(--eyebrow-spacing);
+    text-transform: uppercase;
+    color: var(--eyebrow-color);
+    margin-bottom: 24px;
+}
+
+.heading {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    color: var(--color-cream);
+    margin-bottom: 40px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 44px;
+}
+
+.detailItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.value {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(245, 240, 232, 0.65);
+}
+
+.mapButton {
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-cream);
+    text-decoration: none;
+    transition: opacity 200ms ease;
+    margin-top: auto;
+}
+
+.mapButton:hover {
+    opacity: 0.7;
+}
+
+/* ── Map Side ───────────────────────────────── */
+
+.mapContainer {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    background: #1a1a18;
+    /* Loader bg */
+}
+
+/* Minimal dark filter for Google Maps iframe */
+.map {
+    filter: grayscale(1) invert(0.9) brightness(0.8) contrast(1.1);
+    transition: filter 500ms ease;
+}
+
+.card:hover .map {
+    filter: grayscale(0.2) invert(0) brightness(1);
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 960px) {
+    .card {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        order: 2;
+        padding: 40px 32px;
+    }
+
+    .mapContainer {
+        order: 1;
+        height: 300px;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding-inline: var(--container-px);
+    }
+}

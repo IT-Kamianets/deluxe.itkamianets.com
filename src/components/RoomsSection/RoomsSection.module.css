@@ -1,0 +1,363 @@
+/* ============================================
+   RoomsSection — 5 cards on dark background
+   ============================================ */
+
+.section {
+  padding-block: var(--card-margin-y);
+  padding-inline: var(--card-margin-x);
+  position: relative;
+  z-index: 5;
+  overflow-x: clip;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+.inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+
+/* ── Header ──────────────────────────────── */
+
+.header {
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.35);
+  margin-bottom: 14px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.08;
+  color: var(--color-cream);
+}
+
+/* ── Cards grid ──────────────────────────── */
+
+/* 5 cards: first row 3, second row 2 centered */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  padding-inline: clamp(20px, 4vw, 60px);
+}
+
+.grid>article {
+  grid-column: span 2;
+}
+
+/* Row 2: Center the 4th and 5th cards */
+.grid>article:nth-child(4) {
+  grid-column: 2 / 4;
+}
+
+.grid>article:nth-child(5) {
+  grid-column: 4 / 6;
+}
+
+/* ── Card ────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  /* Semi-transparent dark frame */
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+  overflow: hidden;
+  /* Keep photo corners matched to card */
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 400ms ease,
+    border-color 400ms ease;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: rgba(26, 26, 24, 0.6);
+  border-color: rgba(245, 240, 232, 0.15);
+}
+
+/* ── Photo ───────────────────────────────── */
+
+.photo {
+  position: relative;
+  height: clamp(180px, 22vw, 240px);
+  overflow: hidden;
+  flex-shrink: 0;
+  border-bottom: var(--card-border);
+}
+
+.photoInner {
+  position: absolute;
+  inset: 0;
+  background-color: #2a2724;
+  background-image: url('/images/rooms/room.webp');
+  background-size: cover;
+  background-position: center;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.card:hover .photoInner {
+  transform: scale(1.05);
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(10, 8, 6, 0.55) 0%,
+      transparent 60%);
+  pointer-events: none;
+}
+
+/* Per-room photo tones */
+.deluxe_double .photoInner {
+  background-color: #2a2724;
+}
+
+.deluxe_improved .photoInner {
+  background-color: #2c2620;
+}
+
+.deluxe_triple .photoInner {
+  background-color: #292621;
+}
+
+.family_suite .photoInner {
+  background-color: #2e2822;
+}
+
+.suite_2bed .photoInner {
+  background-color: #2b2520;
+}
+
+/* ── Card body ───────────────────────────── */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px 22px 22px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.area {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.guests {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.3);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.2;
+  color: var(--color-cream);
+  margin-bottom: 12px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding-bottom: 18px;
+}
+
+.features li {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  color: rgba(245, 240, 232, 0.38);
+  position: relative;
+  padding-left: 10px;
+}
+
+.features li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* ── Footer: price + CTA ─────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(245, 240, 232, 0.1);
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.priceFrom {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: rgba(245, 240, 232, 0.45);
+  letter-spacing: 0.3px;
+}
+
+.priceNum {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1;
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
+}
+
+.priceCur {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: rgba(245, 240, 232, 0.45);
+  letter-spacing: 0.3px;
+}
+
+.cta {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid rgba(245, 240, 232, 0.25);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cta:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 768px) {
+  .section {
+    padding-inline: 0;
+    gap: 32px;
+  }
+
+  .header {
+    padding-inline: var(--container-px);
+  }
+
+  .sliderContainer {
+    position: relative;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-inline: 16px;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    scroll-padding-inline: 16px;
+  }
+
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 calc(100% - 32px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    max-width: none;
+    margin: 0;
+  }
+
+  .photo {
+    height: 220px;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .dot,
+  .dotActive {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-cream);
+    opacity: 0.2;
+    transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dotActive {
+    background: var(--color-accent);
+    width: 18px;
+    border-radius: 10px;
+    opacity: 1;
+  }
+}
+
+
+/* ── Reduced motion ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .card,
+  .photoInner {
+    transition: none;
+  }
+}

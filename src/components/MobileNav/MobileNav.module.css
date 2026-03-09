@@ -1,0 +1,72 @@
+.mobileNav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 12, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+    z-index: 1100;
+    align-items: stretch;
+    justify-content: stretch;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (max-width: 767px) {
+    .mobileNav {
+        display: flex;
+    }
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgba(245, 240, 232, 0.4);
+    gap: 4px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 10px 4px 10px;
+    flex: 1;
+    min-height: 56px;
+}
+
+.navItem span {
+    font-size: 9px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.navItem svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    opacity: 0.7;
+    transition: opacity 200ms ease;
+}
+
+.navItem:active {
+    background: rgba(245, 240, 232, 0.05);
+    transform: scale(0.95);
+}
+
+.navItem:hover {
+    color: var(--color-cream);
+}
+
+.navItem:hover svg {
+    opacity: 1;
+}
+
+.cta {
+    color: var(--color-accent);
+}
+
+.cta svg {
+    opacity: 1;
+}

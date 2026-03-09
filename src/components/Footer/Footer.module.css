@@ -1,0 +1,216 @@
+/* ============================================
+   Footer — The final floating card
+   ============================================ */
+
+.footer {
+    padding-block: var(--card-margin-y);
+    padding-inline: var(--card-margin-x);
+    margin-top: 0;
+}
+
+.inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    border: var(--card-border);
+    padding: clamp(40px, 6vw, 80px);
+    backdrop-filter: var(--card-blur);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Grid ─────────────────────────────────── */
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    gap: 48px;
+    margin-bottom: 80px;
+}
+
+/* ── Column Styles ────────────────────────── */
+
+.colBrand {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 36px;
+    letter-spacing: -0.5px;
+    color: var(--color-cream);
+}
+
+.tagline {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(245, 240, 232, 0.5);
+    max-width: 320px;
+}
+
+.colTitle {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 28px;
+}
+
+.linkList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.linkList a {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(245, 240, 232, 0.6);
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+
+.linkList a:hover {
+    color: var(--color-cream);
+}
+
+.contactItems {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contactItem {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contactLabel {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.3);
+}
+
+.contactValue {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245, 240, 232, 0.65);
+    text-decoration: none;
+    display: block;
+}
+
+a.contactValue:hover {
+    color: var(--color-cream);
+}
+
+.socialWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.socialIcons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.socialIconLink {
+    color: rgba(245, 240, 232, 0.45);
+    transition: color 200ms ease, transform 200ms ease;
+    display: flex;
+}
+
+.socialIconLink:hover {
+    color: var(--color-cream);
+    transform: translateY(-2px);
+}
+
+.bookingLink {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 200ms ease;
+}
+
+.bookingLink:hover {
+    opacity: 0.8;
+}
+
+/* ── Bottom Bar ────────────────────────────── */
+
+.bottomBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+}
+
+.copyright {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: rgba(245, 240, 232, 0.3);
+}
+
+.developer {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(245, 240, 232, 0.2);
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        margin-bottom: 56px;
+    }
+
+    .bottomBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .card {
+        padding: 40px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding-inline: var(--container-px);
+    }
+}
