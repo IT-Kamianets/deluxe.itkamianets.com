@@ -1,40 +1,22 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './AboutSection.module.css'
 
-const rows = [
-  {
-    slug: 'rooms',
-    photoRight: true,
-    num: '8',
-    unit: 'номерів',
-    label: 'Комфортні номери',
-    body: 'Від 20 до 45 м² — кожен з авторським інтер\u2019єром, якісною постіллю та всім необхідним для відпочинку.',
-  },
-  {
-    slug: 'restaurant',
-    photoRight: false,
-    num: null,
-    unit: null,
-    label: 'Ресторан',
-    body: 'Авторська кухня та смачні сніданки щодня. Затишна атмосфера для ділових зустрічей і романтичних вечерь.',
-  },
-  {
-    slug: 'banquet',
-    photoRight: true,
-    num: '80',
-    unit: 'осіб',
-    label: 'Банкетна зала',
-    body: 'Весілля, корпоративи, святкові заходи. Повний сервіс, власна кухня, індивідуальний підхід до кожного замовлення.',
-  },
-  {
-    slug: 'parking',
-    photoRight: false,
-    num: null,
-    unit: null,
-    label: 'Безкоштовна парковка',
-    body: 'Власна охоронювана парковка для гостей готелю. Зручний заїзд і виїзд цілодобово.',
-  },
+gsap.registerPlugin(ScrollTrigger)
+
+const stats = [
+  { num: '8',   label: 'номерів' },
+  { num: '80',  label: 'осіб у залі' },
+  { num: '4.4', label: 'Google' },
+  { num: '8.9', label: 'Booking.com' },
+]
+
+const photos = [
+  { src: '/images/rooms/room.webp',               alt: 'Номер готелю' },
+  { src: '/images/restaurant/restaurant.webp',    alt: 'Ресторан' },
+  { src: '/images/restaurant/banquet-hall.webp',  alt: 'Банкетна зала' },
+  { src: '/images/about/reseption.webp',          alt: 'Ресепшн готелю' },
 ]
 
 export default function AboutSection() {
@@ -42,117 +24,84 @@ export default function AboutSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Eyebrow — fade up
       gsap.fromTo(
-        '[data-anim="about-eyebrow"]',
-        { opacity: 0, y: 14 },
+        '[data-anim="about-title"]',
+        { opacity: 0, y: 20 },
         {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '[data-anim="about-eyebrow"]', start: 'top 82%' },
+          opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
         }
       )
-
-      // Heading — clip reveal from bottom
       gsap.fromTo(
-        '[data-anim="about-heading"]',
-        { clipPath: 'inset(100% 0% 0% 0%)', y: 10 },
+        '[data-anim="about-body"]',
+        { opacity: 0, y: 16 },
         {
-          clipPath: 'inset(0% 0% 0% 0%)',
-          y: 0,
-          duration: 1.05,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '[data-anim="about-eyebrow"]', start: 'top 82%' },
-          delay: 0.14,
+          opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: 0.1,
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
         }
       )
-
-      // Row cards
-      sectionRef.current.querySelectorAll('[data-anim-row]').forEach((row) => {
-        const text = row.querySelector('[data-anim="text"]')
-        const photo = row.querySelector('[data-anim="photo"]')
-        const isPhotoRight = text.closest('[data-photo-right="true"]')
-
-        gsap.fromTo(
-          text,
-          { opacity: 0, x: isPhotoRight ? -36 : 36, scale: 0.98 },
-          {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.95,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: row, start: 'top 76%' },
-          }
-        )
-
-        gsap.fromTo(
-          photo,
-          { opacity: 0, x: isPhotoRight ? 36 : -36, scale: 0.98 },
-          {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.95,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: row, start: 'top 76%' },
-          }
-        )
-      })
+      gsap.fromTo(
+        '[data-anim="about-stats"]',
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.22,
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+        }
+      )
+      gsap.fromTo(
+        '[data-anim="about-photo"]',
+        { opacity: 0, y: 24, scale: 0.98 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.8, ease: 'power3.out',
+          stagger: 0.09,
+          scrollTrigger: { trigger: '[data-anim="about-photos"]', start: 'top 88%' },
+        }
+      )
     }, sectionRef)
-
     return () => ctx.revert()
   }, [])
 
   return (
     <section className={styles.section} ref={sectionRef} id="about">
+      <div className={styles.inner}>
 
-      {/* ── Section header card ── */}
-      <div className={styles.headerCard}>
-        <span className={styles.eyebrow} data-anim="about-eyebrow">Про нас</span>
-        <h2 className={styles.heading} data-anim="about-heading">
-          Маленький готель<br />з великою душею
-        </h2>
-      </div>
+        {/* ── Top: title left, description + stats right ── */}
+        <div className={styles.top}>
+          <h2 className={styles.heading} data-anim="about-title">
+            Маленький готель<br />з великою душею
+          </h2>
 
-      {/* ── Individual row cards ── */}
-      <div className={styles.cards}>
-        {rows.map((row) => (
-          <div
-            key={row.slug}
-            className={`${styles.card} ${row.photoRight ? styles.rowPhotoRight : styles.rowPhotoLeft}`}
-            data-anim-row
-            data-photo-right={row.photoRight ? 'true' : 'false'}
-          >
-            {/* Text block */}
-            <div className={styles.textBlock} data-anim="text">
-              <div className={styles.textInner}>
-                {row.num && (
-                  <div className={styles.stat}>
-                    <span className={styles.statNum}>{row.num}</span>
-                    <span className={styles.statUnit}>{row.unit}</span>
-                  </div>
-                )}
-                <h3 className={styles.rowLabel}>{row.label}</h3>
-                <p className={styles.rowBody}>{row.body}</p>
-              </div>
-            </div>
+          <div className={styles.right}>
+            <p className={styles.body} data-anim="about-body">
+              Бутік-готель DeLuxe — затишне місце в самому серці
+              Кам'янця-Подільського. Авторські номери з індивідуальним
+              інтер'єром, власний ресторан із домашньою кухнею та банкетна
+              зала для особливих подій. Тут кожен гість — не просто
+              постоялець.
+            </p>
 
-            {/* Photo block */}
-            <div
-              className={`${styles.photoBlock} ${styles[row.slug]}`}
-              data-anim="photo"
-              role="img"
-              aria-label={row.label}
-            >
-              <div className={styles.photoInner} />
+            <div className={styles.stats} data-anim="about-stats">
+              {stats.map((s) => (
+                <div key={s.label} className={styles.stat}>
+                  <span className={styles.statNum}>{s.num}</span>
+                  <span className={styles.statLabel}>{s.label}</span>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
 
+        {/* ── Bottom: photo strip ── */}
+        <div className={styles.photos} data-anim="about-photos">
+          {photos.map((p) => (
+            <div key={p.src} className={styles.photo} data-anim="about-photo">
+              <img src={p.src} alt={p.alt} className={styles.photoImg} loading="lazy" />
+            </div>
+          ))}
+        </div>
+
+      </div>
     </section>
   )
 }

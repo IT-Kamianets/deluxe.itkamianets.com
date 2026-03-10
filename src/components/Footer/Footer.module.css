@@ -193,9 +193,18 @@ a.contactValue:hover {
 
 @media (max-width: 768px) {
     .grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 32px;
         margin-bottom: 56px;
+    }
+
+    /* Brand spans full width on top */
+    .colBrand {
+        grid-column: 1 / -1;
+    }
+
+    .tagline {
+        max-width: 100%;
     }
 
     .bottomBar {
@@ -206,6 +215,21 @@ a.contactValue:hover {
 
     .card {
         padding: 40px 32px;
+    }
+}
+
+@media (max-width: 420px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+    }
+
+    .colBrand {
+        grid-column: 1 / -1;
+    }
+
+    .card {
+        padding: 32px 20px;
     }
 }
 

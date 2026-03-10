@@ -5,6 +5,7 @@ import QuickInfoBar from './components/QuickInfoBar/QuickInfoBar'
 import AboutSection from './components/AboutSection/AboutSection'
 import RoomsSection from './components/RoomsSection/RoomsSection'
 import RestaurantSection from './components/RestaurantSection/RestaurantSection'
+import GallerySection from './components/GallerySection/GallerySection'
 import LocationSection from './components/LocationSection/LocationSection'
 import ReviewsSection from './components/ReviewsSection/ReviewsSection'
 import Footer from './components/Footer/Footer'
@@ -24,6 +25,7 @@ function App() {
       <AboutSection />
       <RoomsSection />
       <RestaurantSection />
+      <GallerySection />
       <LocationSection />
       <ReviewsSection />
       <Footer />

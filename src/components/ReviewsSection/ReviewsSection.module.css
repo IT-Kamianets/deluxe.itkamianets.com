@@ -144,8 +144,15 @@
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.2);
+    color: rgba(245, 240, 232, 0.25);
     margin-top: auto;
+    text-decoration: none;
+    transition: color 200ms ease;
+    display: inline-block;
+}
+
+.source:hover {
+    color: var(--color-accent);
 }
 
 /* ── Footer ── */

@@ -25,6 +25,7 @@ dist-ssr
 
 # Claude internal
 .claude/
+CLAUDE.md
 
 # Project docs / planning
 docs/

@@ -101,7 +101,14 @@ export default function ReviewsSection() {
                                 <div className={styles.rating}>{review.rating}</div>
                             </div>
                             <p className={styles.text}>«{review.text}»</p>
-                            <div className={styles.source}>Booking.com</div>
+                            <a
+                                href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html#tab-reviews"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.source}
+                            >
+                                Booking.com ↗
+                            </a>
                         </div>
                     ))}
                 </div>

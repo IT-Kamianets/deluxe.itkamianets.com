@@ -112,14 +112,9 @@
     /* Loader bg */
 }
 
-/* Minimal dark filter for Google Maps iframe */
 .map {
-    filter: grayscale(1) invert(0.9) brightness(0.8) contrast(1.1);
-    transition: filter 500ms ease;
-}
-
-.card:hover .map {
-    filter: grayscale(0.2) invert(0) brightness(1);
+    display: block;
+    /* No filter on iframe — causes scroll repaint lag */
 }
 
 /* ── Responsive ───────────────────────────── */

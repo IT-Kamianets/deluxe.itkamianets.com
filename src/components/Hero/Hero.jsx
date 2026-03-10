@@ -62,15 +62,17 @@ export default function Hero() {
                 <span className={styles.ratingMeta}>Google · ★★★★</span>
               </div>
             </div>
-            <a
-              href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.cta}
-              data-hero="panel-item"
-            >
-              Забронювати
-            </a>
+            <div className={styles.ctaGroup} data-hero="panel-item">
+              <a
+                href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.cta}
+              >
+                Забронювати
+              </a>
+              <span className={styles.ctaHint}>через Booking.com</span>
+            </div>
 
             <div className={styles.socials} data-hero="panel-item">
               <a

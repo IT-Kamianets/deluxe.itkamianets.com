@@ -1,0 +1,180 @@
+/* ============================================
+   Lightbox — fullscreen photo viewer
+   ============================================ */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(10, 9, 8, 0.96);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to   { opacity: 1 }
+}
+
+/* ── Close ── */
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(245, 240, 232, 0.15);
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.06);
+    color: rgba(245, 240, 232, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+    z-index: 10;
+}
+
+.close:hover {
+    background: rgba(245, 240, 232, 0.12);
+    color: #f5f0e8;
+}
+
+/* ── Main image area ── */
+
+.main {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 80px;
+    min-height: 0;
+}
+
+.mainImg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    animation: imgFade 200ms ease;
+    user-select: none;
+}
+
+@keyframes imgFade {
+    from { opacity: 0; transform: scale(0.97) }
+    to   { opacity: 1; transform: scale(1) }
+}
+
+/* ── Prev / Next ── */
+
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(245, 240, 232, 0.15);
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.06);
+    color: rgba(245, 240, 232, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+}
+
+.nav:hover {
+    background: rgba(245, 240, 232, 0.12);
+    color: #f5f0e8;
+}
+
+.navPrev { left: 16px; }
+.navNext { right: 16px; }
+
+/* ── Counter ── */
+
+.counter {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: rgba(245, 240, 232, 0.35);
+}
+
+/* ── Thumbnail strip ── */
+
+.thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+.thumbs::-webkit-scrollbar { display: none; }
+
+.thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 48px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    background: rgba(245, 240, 232, 0.08);
+    transition: border-color 200ms ease, opacity 200ms ease;
+    opacity: 0.5;
+}
+
+.thumb:hover {
+    opacity: 0.8;
+}
+
+.thumbActive {
+    border-color: var(--color-accent);
+    opacity: 1;
+}
+
+.thumbImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 640px) {
+    .main {
+        padding: 12px 52px;
+    }
+
+    .navPrev { left: 6px; }
+    .navNext { right: 6px; }
+
+    .nav, .close {
+        width: 38px;
+        height: 38px;
+    }
+
+    .thumb {
+        width: 52px;
+        height: 40px;
+    }
+}

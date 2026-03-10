@@ -1,0 +1,315 @@
+/* ============================================
+   GallerySection — tabbed photo gallery
+   ============================================ */
+
+.section {
+    padding-block: var(--card-margin-y);
+    padding-inline: var(--card-margin-x);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+}
+
+.inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+/* ── Header ── */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--eyebrow-font);
+    font-size: var(--eyebrow-size);
+    font-weight: 500;
+    letter-spacing: var(--eyebrow-spacing);
+    text-transform: uppercase;
+    color: var(--eyebrow-color);
+    margin-bottom: 14px;
+}
+
+.heading {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(28px, 3.5vw, 48px);
+    line-height: 1.1;
+    color: var(--color-cream);
+}
+
+/* ── Tabs ── */
+
+.tabs {
+    display: flex;
+    position: relative;
+    gap: 40px;
+    align-items: center;
+    padding: 0;
+}
+
+.tab {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px 0;
+    transition: all 400ms ease;
+    text-align: left;
+    position: relative;
+}
+
+.tabNum {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--color-accent);
+    opacity: 0.6;
+    font-weight: 500;
+}
+
+.tabLabel {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 300;
+    color: rgba(245, 240, 232, 0.2);
+    transition: color 400ms ease, transform 400ms ease;
+}
+
+.tab:hover .tabLabel {
+    color: rgba(245, 240, 232, 0.6);
+}
+
+.tabActive .tabLabel {
+    color: var(--color-cream);
+}
+
+.tabActive::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0.4);
+    transform-origin: left;
+    opacity: 0.4;
+}
+
+/* Tab Active Dot */
+.tabActive .tabNum {
+    opacity: 1;
+}
+
+
+
+/* ── Photo Grid ── */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(130px, auto);
+    gap: 12px;
+    grid-auto-flow: dense;
+}
+
+.cell {
+    border-radius: calc(var(--card-radius) * 0.75);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+/* ── Asymmetric Layout: Hotel (8 photos, 5x3 grid) ── */
+.grid[data-active-tab="hotel"] .cell:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.grid[data-active-tab="hotel"] .cell:nth-child(2) {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.grid[data-active-tab="hotel"] .cell:nth-child(3) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.grid[data-active-tab="hotel"] .cell:nth-child(4) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.grid[data-active-tab="hotel"] .cell:nth-child(5) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* ── Asymmetric Layout: Restaurant (6 photos, 5x3 grid) ── */
+.grid[data-active-tab="restaurant"] .cell:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.grid[data-active-tab="restaurant"] .cell:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.grid[data-active-tab="restaurant"] .cell:nth-child(3) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.grid[data-active-tab="restaurant"] .cell:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.grid[data-active-tab="restaurant"] .cell:nth-child(5) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.cellReal {
+    cursor: zoom-in;
+    background: rgba(26, 26, 24, 0.6);
+    border: 1px solid rgba(245, 240, 232, 0.06);
+}
+
+.cellReal:hover .cellImg {
+    transform: scale(1.05);
+}
+
+.cellImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+/* ── Placeholder cells ── */
+
+.cellPlaceholder {
+    background: rgba(20, 19, 17, 0.5);
+    border: 1px solid rgba(245, 240, 232, 0.05);
+}
+
+.placeholderInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.012) 0px,
+            rgba(255, 255, 255, 0.012) 1px,
+            transparent 1px,
+            transparent 12px);
+}
+
+.placeholderText {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.15);
+}
+
+.dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.15);
+    transition: all 300ms ease;
+}
+
+.dotActive {
+    background: var(--color-accent);
+    transform: scale(1.3);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid[data-active-tab] .cell {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 640px) {
+    .dots {
+        display: flex;
+    }
+
+    .section {
+        padding-inline: 0;
+        /* Remove padding to allow full-width scroll */
+    }
+
+    .header {
+        padding-inline: var(--container-px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 28px;
+    }
+
+    .grid {
+        display: flex;
+        /* Switch to flex for easier horizontal scrolling */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        padding-inline: var(--container-px);
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE/Edge */
+    }
+
+    .grid::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .cell {
+        flex: 0 0 90vw;
+        /* Fixed width to see part of next photo */
+        aspect-ratio: 4 / 3.2;
+        scroll-snap-align: center;
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+
+    /* Reset asymmetric spans on mobile */
+    .grid[data-active-tab] .cell {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+}

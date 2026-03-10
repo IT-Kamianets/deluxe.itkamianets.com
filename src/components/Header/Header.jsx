@@ -25,6 +25,7 @@ export default function Header() {
         <nav className={styles.nav} aria-label="Основна навігація">
           <a href="#rooms">Номери</a>
           <a href="#restaurant">Ресторан</a>
+          <a href="#gallery">Галерея</a>
           <a href="#location">Розташування</a>
         </nav>
 

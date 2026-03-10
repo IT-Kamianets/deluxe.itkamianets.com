@@ -19,6 +19,8 @@ const items = [
     }
 ]
 
+
+
 export default function RestaurantSection() {
     const sectionRef = useRef(null)
 
@@ -114,11 +116,19 @@ export default function RestaurantSection() {
                                 <h3 className={styles.rowLabel}>{item.label}</h3>
                                 <p className={styles.rowBody}>{item.body}</p>
                                 {item.slug === 'banquets' && (
-                                    <div className={styles.ctaWrapper}>
-                                        <a href="tel:+380931709524" className={styles.ctaLink}>
-                                            Замовити банкет →
-                                        </a>
-                                    </div>
+                                    <>
+                                        <div className={styles.banquetFeatures}>
+                                            <span>До 80 осіб</span>
+                                            <span>Власна кухня</span>
+                                            <span>Повний сервіс</span>
+                                            <span>Весілля · Корпоративи</span>
+                                        </div>
+                                        <div className={styles.ctaWrapper}>
+                                            <a href="tel:+380931709524" className={styles.ctaLink}>
+                                                Замовити банкет →
+                                            </a>
+                                        </div>
+                                    </>
                                 )}
                             </div>
                         </div>
