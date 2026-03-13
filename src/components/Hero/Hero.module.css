@@ -64,11 +64,18 @@
 
 .photo {
   flex: 0 0 58%;
-  background-image: url('/images/hero/hero-main.webp');
-  background-size: cover;
-  background-position: left center;
   background-color: var(--color-dark);
   position: relative;
+  overflow: hidden;
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  object-position: left center;
+  will-change: transform;
 }
 
 .photo::after {
@@ -89,17 +96,16 @@
 }
 
 .panelContent {
-  padding: 0 52px 60px 52px;
+  padding: 0 clamp(24px, 4vw, 52px) clamp(40px, 6vw, 60px);
 }
 
 .tagline {
   font-family: var(--font-heading);
-  font-size: var(--text-base);
+  font-size: clamp(14px, 1.25vw, 17px);
   font-weight: 400;
-
   color: rgba(245, 240, 232, 0.68);
-  line-height: 1.65;
-  margin: 0 0 32px;
+  line-height: 1.5;
+  margin: 0 0 clamp(16px, 3vw, 32px);
 }
 
 .ratings {
@@ -215,55 +221,51 @@
 .titleGroup {
   position: absolute;
   left: 58%;
-  /* Align exactly with the panel content start */
-  top: 35%;
+  top: 32%; /* Offset slightly higher to clear tagline */
   transform: translateY(-50%);
   z-index: 10;
   pointer-events: none;
   display: flex;
   flex-direction: column;
-  white-space: nowrap;
-  padding-left: 52px;
-  /* Match panelContent padding-left */
+  padding-left: clamp(24px, 4vw, 52px); /* Responsive padding */
 }
 
 .subtitle {
   font-family: var(--font-heading);
-  font-size: clamp(56px, 6.2vw, 92px);
+  font-size: clamp(38px, 5.2vw, 84px); /* Smoother scaling */
   font-weight: 300;
   color: var(--color-cream);
   letter-spacing: 0.02em;
   line-height: 0.9;
   margin: 0;
   text-align: right;
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 768px) {
   .titleGroup {
     align-items: flex-start;
-    display: inline-flex;
   }
 
   .subtitle {
     position: absolute;
     bottom: 100%;
     right: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     white-space: nowrap;
   }
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(56px, 6.2vw, 92px);
+  font-size: clamp(42px, 5.8vw, 92px); /* Smoother scaling */
   color: var(--color-accent);
   letter-spacing: 0.02em;
   line-height: 0.9;
   font-weight: 500;
-  margin: 12px 0 0;
+  margin: 6px 0 0;
   text-align: left;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ── Accessibility ───────────────────────── */
@@ -362,7 +364,7 @@
   }
 
   .ctaHint {
-    text-align: center;
+    text-align: left;
     font-size: 10px;
     margin-top: 2px;
   }

@@ -114,12 +114,14 @@
 
 /* ── Photo Grid ── */
 
+/* ── Photo Grid ── */
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(130px, auto);
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: clamp(200px, 18vw, 260px); 
     gap: 12px;
-    grid-auto-flow: dense;
+    /* Removed dense to force explicit placement for perfect rectangle */
 }
 
 .cell {
@@ -129,57 +131,16 @@
     height: 100%;
 }
 
-/* ── Asymmetric Layout: Hotel (8 photos, 5x3 grid) ── */
-.grid[data-active-tab="hotel"] .cell:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
-}
+/* ── Perfect Rectangle: Hotel (11 photos -> 4x4 grid = 16 slots) ── */
+/* P1 takes 4, P6 takes 2, P9 takes 2. Total: 4+2+2 + 8(1x1) = 16 slots */
+.grid[data-active-tab="hotel"] .cell:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.grid[data-active-tab="hotel"] .cell:nth-child(6) { grid-column: span 2; }
+.grid[data-active-tab="hotel"] .cell:nth-child(9) { grid-column: span 2; }
 
-.grid[data-active-tab="hotel"] .cell:nth-child(2) {
-    grid-column: span 1;
-    grid-row: span 2;
-}
-
-.grid[data-active-tab="hotel"] .cell:nth-child(3) {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-.grid[data-active-tab="hotel"] .cell:nth-child(4) {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-.grid[data-active-tab="hotel"] .cell:nth-child(5) {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-/* ── Asymmetric Layout: Restaurant (6 photos, 5x3 grid) ── */
-.grid[data-active-tab="restaurant"] .cell:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-.grid[data-active-tab="restaurant"] .cell:nth-child(2) {
-    grid-column: span 3;
-    grid-row: span 2;
-}
-
-.grid[data-active-tab="restaurant"] .cell:nth-child(3) {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-.grid[data-active-tab="restaurant"] .cell:nth-child(4) {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-.grid[data-active-tab="restaurant"] .cell:nth-child(5) {
-    grid-column: span 2;
-    grid-row: span 1;
-}
+/* ── Perfect Rectangle: Restaurant (8 photos -> 4x3 grid = 12 slots) ── */
+/* P1 takes 4, P6 takes 2. Total: 4+2 + 6(1x1) = 12 slots */
+.grid[data-active-tab="restaurant"] .cell:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.grid[data-active-tab="restaurant"] .cell:nth-child(6) { grid-column: span 2; }
 
 .cellReal {
     cursor: zoom-in;

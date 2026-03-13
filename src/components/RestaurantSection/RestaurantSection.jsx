@@ -8,14 +8,14 @@ const items = [
         photoRight: true,
         label: 'Ресторан та сніданки',
         body: 'Щоранку для гостей сервірують смачний континентальний сніданок або страви за меню. Також доступна послуга обслуговування номерів для вашого максимального комфорту.',
-        photo: '/images/restaurant/restaurant.webp'
+        photo: '/images/restaurant/1.webp'
     },
     {
         slug: 'banquets',
         photoRight: false,
         label: 'Банкетна зала',
         body: 'Наша елегантна зала вміщує до 80 осіб. Це ідеальне місце для проведення весіль, корпоративів та інших урочистих подій з індивідуальним підходом до кожного замовлення.',
-        photo: '/images/restaurant/banquet-hall.webp'
+        photo: '/images/restaurant/8.webp'
     }
 ]
 

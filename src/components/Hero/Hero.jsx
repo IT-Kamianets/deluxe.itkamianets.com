@@ -41,7 +41,14 @@ export default function Hero() {
       <div className={styles.inner} data-hero="inner">
 
         {/* Left: photo panel */}
-        <div className={styles.photo} role="img" aria-label="Бутік-готель Deluxe — інтер'єр" />
+        <div className={styles.photo}>
+          <img 
+            src="/images/hero/hero-main.webp" 
+            alt="Бутік-готель Deluxe — вишуканий інтер'єр" 
+            className={styles.photoImg} 
+            fetchpriority="high"
+          />
+        </div>
 
         {/* Right: dark info panel */}
         <div className={styles.panel}>

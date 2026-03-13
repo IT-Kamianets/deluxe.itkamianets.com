@@ -12,6 +12,14 @@
     align-items: stretch;
     justify-content: stretch;
     padding-bottom: env(safe-area-inset-bottom);
+    transition: transform 300ms ease, opacity 300ms ease;
+    will-change: transform, opacity;
+}
+
+:global(body[style*="overflow: hidden"]) .mobileNav {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 @media (max-width: 767px) {

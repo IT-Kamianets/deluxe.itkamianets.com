@@ -16,7 +16,10 @@ const rooms = [
     price: '1 800',
     features: ['Кондиціонер', 'Wi-Fi', 'Сейф', 'Міні-бар', 'Душова кабіна', 'Фен'],
     photos: [
-      { src: '/images/rooms/room.webp', alt: 'Делюкс двомісний — вигляд номера' },
+      { src: '/images/rooms/deluxe-double/1.webp', alt: 'Делюкс двомісний — основне фото' },
+      { src: '/images/rooms/deluxe-double/2.webp', alt: 'Делюкс двомісний — інтер\'єр' },
+      { src: '/images/rooms/deluxe-double/3.webp', alt: 'Делюкс двомісний — деталі' },
+      { src: '/images/rooms/deluxe-double/4.webp', alt: 'Делюкс двомісний — вигляд' },
     ],
   },
   {
@@ -28,7 +31,11 @@ const rooms = [
     price: '1 990',
     features: ['Балкон', 'Кондиціонер', 'Wi-Fi', 'Сейф', 'Халат та капці'],
     photos: [
-      // { src: '/images/rooms/deluxe-improved.webp', alt: 'Делюкс покращений' },
+      { src: '/images/rooms/deluxe-improved/1.webp', alt: 'Делюкс покращений — основне фото' },
+      { src: '/images/rooms/deluxe-improved/2.webp', alt: 'Делюкс покращений — інтер\'єр' },
+      { src: '/images/rooms/deluxe-improved/3.webp', alt: 'Делюкс покращений — вигляд' },
+      { src: '/images/rooms/deluxe-improved/4.webp', alt: 'Делюкс покращений — деталі' },
+      { src: '/images/rooms/deluxe-improved/5.webp', alt: 'Делюкс покращений — санвузол' },
     ],
   },
   {
@@ -40,7 +47,11 @@ const rooms = [
     price: '2 150',
     features: ['Балкон', 'Вид на місто', 'Диван-ліжко', 'Кондиціонер', 'Wi-Fi'],
     photos: [
-      // { src: '/images/rooms/deluxe-triple.webp', alt: 'Делюкс тримісний' },
+      { src: '/images/rooms/deluxe-triple/1.webp', alt: 'Делюкс тримісний — основне фото' },
+      { src: '/images/rooms/deluxe-triple/2.webp', alt: 'Делюкс тримісний — інтер\'єр' },
+      { src: '/images/rooms/deluxe-triple/3.webp', alt: 'Делюкс тримісний — вигляд' },
+      { src: '/images/rooms/deluxe-triple/4.webp', alt: 'Делюкс тримісний — деталі' },
+      { src: '/images/rooms/deluxe-triple/5.webp', alt: 'Делюкс тримісний — додаткове спальне місце' },
     ],
   },
   {
@@ -52,7 +63,11 @@ const rooms = [
     price: '3 500',
     features: ['2 спальні', 'Балкон', 'Кондиціонер', 'Холодильник', 'Вітальня'],
     photos: [
-      // { src: '/images/rooms/family-suite.webp', alt: 'Сімейний люкс' },
+      { src: '/images/rooms/family-suite/1.webp', alt: 'Сімейний люкс — основне фото' },
+      { src: '/images/rooms/family-suite/2.webp', alt: 'Сімейний люкс — майстер-спальня' },
+      { src: '/images/rooms/family-suite/3.webp', alt: 'Сімейний люкс — вітальня' },
+      { src: '/images/rooms/family-suite/4.webp', alt: 'Сімейний люкс — балкон' },
+      { src: '/images/rooms/family-suite/5.webp', alt: 'Сімейний люкс — санвузол' },
     ],
   },
   {
@@ -64,7 +79,10 @@ const rooms = [
     price: '4 150',
     features: ['2 спальні', 'Балкон', 'Міні-бар', 'Сейф', 'Вітальня', 'Халат'],
     photos: [
-      // { src: '/images/rooms/suite-2bed.webp', alt: 'Люкс з двома спальнями' },
+      { src: '/images/rooms/suite-2bed/1.webp', alt: 'Люкс з двома спальнями — основне фото' },
+      { src: '/images/rooms/suite-2bed/2.webp', alt: 'Люкс з двома спальнями — інтер\'єр' },
+      { src: '/images/rooms/suite-2bed/3.webp', alt: 'Люкс з двома спальнями — вітальня' },
+      { src: '/images/rooms/suite-2bed/4.webp', alt: 'Люкс з двома спальнями — деталі' },
     ],
   },
 ]
@@ -131,6 +149,15 @@ export default function RoomsSection() {
     return () => ctx.revert()
   }, [])
 
+  const scroll = (direction) => {
+    if (!gridRef.current) return
+    const scrollAmount = gridRef.current.clientWidth - 20
+    gridRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    })
+  }
+
   const handleScroll = (e) => {
     const element = e.target
     const index = Math.round(element.scrollLeft / (element.clientWidth - 20))
@@ -146,8 +173,29 @@ export default function RoomsSection() {
 
           {/* ── Header ── */}
           <div className={styles.header}>
-            <span className={styles.eyebrow} data-anim="room-eyebrow">Номери</span>
-            <h2 className={styles.heading} data-anim="room-heading">Оберіть свій номер</h2>
+            <div>
+              <span className={styles.eyebrow} data-anim="room-eyebrow">Номери</span>
+              <h2 className={styles.heading} data-anim="room-heading">Оберіть свій номер</h2>
+            </div>
+            
+            <div className={styles.nav}>
+              <button 
+                className={styles.navBtn} 
+                onClick={() => scroll('left')} 
+                aria-label="Попередній номер"
+                disabled={activeIndex === 0}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <button 
+                className={styles.navBtn} 
+                onClick={() => scroll('right')} 
+                aria-label="Наступний номер"
+                disabled={activeIndex === rooms.length - 1}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
 
           {/* ── Cards grid / Slider ── */}

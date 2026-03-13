@@ -13,10 +13,10 @@ const stats = [
 ]
 
 const photos = [
-  { src: '/images/rooms/room.webp',               alt: 'Номер готелю' },
-  { src: '/images/restaurant/restaurant.webp',    alt: 'Ресторан' },
-  { src: '/images/restaurant/banquet-hall.webp',  alt: 'Банкетна зала' },
-  { src: '/images/about/reseption.webp',          alt: 'Ресепшн готелю' },
+  { src: '/images/rooms/deluxe-improved/1.webp', alt: 'Номер готелю — Делюкс' },
+  { src: '/images/restaurant/1.webp',            alt: 'Ресторан Deluxe' },
+  { src: '/images/restaurant/4.webp',            alt: 'Банкетна зала — декор' },
+  { src: '/images/hotel/4.webp',                 alt: 'Ресепшн та гостинність' },
 ]
 
 export default function AboutSection() {

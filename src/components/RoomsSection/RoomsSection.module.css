@@ -21,7 +21,49 @@
 /* ── Header ──────────────────────────────── */
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: clamp(36px, 4.5vw, 56px);
+  gap: 24px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.navBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  background: transparent;
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: all 300ms ease;
+  font-size: 18px;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.navBtn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
 }
 
 .eyebrow {
@@ -96,10 +138,17 @@
 
 .photo {
   position: relative;
-  height: clamp(180px, 22vw, 240px);
+  height: 220px; /* Fixed height for consistent 'neat' look */
   overflow: hidden;
   flex-shrink: 0;
   border-bottom: var(--card-border);
+  background: #1a1a18;
+}
+
+@media (min-width: 1440px) {
+  .photo {
+    height: 250px;
+  }
 }
 
 .photoInner {
@@ -244,18 +293,19 @@
   list-style: none;
   padding: 0;
   margin: 0 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 10px;
-  padding-bottom: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  padding-bottom: 20px;
 }
 
 .features li {
   font-family: var(--font-body);
-  font-size: 10.5px;
-  color: rgba(245, 240, 232, 0.38);
+  font-size: 10px;
+  color: rgba(245, 240, 232, 0.45);
   position: relative;
   padding-left: 10px;
+  white-space: nowrap;
 }
 
 .features li::before {
