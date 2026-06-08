@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import styles from './RestaurantSection.module.css'
+import BookingModal from '../BookingModal/BookingModal'
 
 const items = [
     {
@@ -23,6 +24,7 @@ const items = [
 
 export default function RestaurantSection() {
     const sectionRef = useRef(null)
+    const [modalOpen, setModalOpen] = useState(false)
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -91,6 +93,7 @@ export default function RestaurantSection() {
     }, [])
 
     return (
+        <>
         <section className={styles.section} ref={sectionRef} id="restaurant">
 
             {/* ── Section header ── */}
@@ -124,9 +127,12 @@ export default function RestaurantSection() {
                                             <span>Весілля · Корпоративи</span>
                                         </div>
                                         <div className={styles.ctaWrapper}>
-                                            <a href="tel:+380931709524" className={styles.ctaLink}>
+                                            <button
+                                                className={styles.ctaLink}
+                                                onClick={() => setModalOpen(true)}
+                                            >
                                                 Замовити банкет →
-                                            </a>
+                                            </button>
                                         </div>
                                     </>
                                 )}
@@ -150,5 +156,12 @@ export default function RestaurantSection() {
             </div>
 
         </section>
+
+        <BookingModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            roomName="Банкетна зала"
+        />
+        </>
     )
 }

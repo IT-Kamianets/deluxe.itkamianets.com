@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import styles from './Header.module.css'
+import BookingModal from '../BookingModal/BookingModal'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -29,15 +31,24 @@ export default function Header() {
           <a href="#location">Розташування</a>
         </nav>
 
-        <a
-          href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.cta}
-        >
-          Забронювати
-        </a>
+        <div className={styles.ctaGroup}>
+          <a
+            href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cta}
+          >
+            Забронювати онлайн
+          </a>
+          <button
+            className={styles.ctaBtn}
+            onClick={() => setModalOpen(true)}
+          >
+            Забронювати
+          </button>
+        </div>
       </div>
+      <BookingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </header>
   )
 }

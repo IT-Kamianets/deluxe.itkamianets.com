@@ -26,7 +26,9 @@ export default function Footer() {
                                 <li><a href="#about">Про нас</a></li>
                                 <li><a href="#rooms">Номери</a></li>
                                 <li><a href="#restaurant">Ресторан</a></li>
-                                <li><a href="#location">Локація</a></li>
+                                <li><a href="#gallery">Галерея</a></li>
+                                <li><a href="#location">Розташування</a></li>
+                                <li><a href="#reviews">Відгуки</a></li>
                             </ul>
                         </div>
 
@@ -36,7 +38,14 @@ export default function Footer() {
                             <div className={styles.contactItems}>
                                 <div className={styles.contactItem}>
                                     <span className={styles.contactLabel}>Адреса</span>
-                                    <p className={styles.contactValue}>Нігинське шосе, 24А,<br />Кам'янець-Подільський</p>
+                                    <a
+                                        href="https://maps.app.goo.gl/Akm9z3iXBhgGhsot8"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.contactValue}
+                                    >
+                                        Нігинське шосе, 24А,<br />Кам'янець-Подільський
+                                    </a>
                                 </div>
                                 <div className={styles.contactItem}>
                                     <span className={styles.contactLabel}>Телефон</span>

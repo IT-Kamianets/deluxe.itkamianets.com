@@ -1,9 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import styles from './Hero.module.css'
+import BookingModal from '../BookingModal/BookingModal'
 
 export default function Hero() {
   const heroRef = useRef(null)
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -70,14 +72,22 @@ export default function Hero() {
               </div>
             </div>
             <div className={styles.ctaGroup} data-hero="panel-item">
-              <a
-                href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.cta}
-              >
-                Забронювати
-              </a>
+              <div className={styles.ctaRow}>
+                <a
+                  href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cta}
+                >
+                  Забронювати онлайн
+                </a>
+                <button
+                  className={styles.ctaBtn}
+                  onClick={() => setModalOpen(true)}
+                >
+                  Забронювати
+                </button>
+              </div>
               <span className={styles.ctaHint}>через Booking.com</span>
             </div>
 
@@ -119,6 +129,7 @@ export default function Hero() {
         </div>
 
       </div>
+      <BookingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   )
 }

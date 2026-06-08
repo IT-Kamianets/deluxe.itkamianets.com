@@ -137,6 +137,35 @@
   border-color: var(--color-accent);
 }
 
+.ctaGroup {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ctaBtn {
+  appearance: none;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  background: transparent;
+  cursor: pointer;
+  padding: 9px 20px;
+  border: 1px solid rgba(245, 240, 232, 0.38);
+  white-space: nowrap;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.ctaBtn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
 /* ── Hamburger ───────────────────────────── */
 
 .hamburger {

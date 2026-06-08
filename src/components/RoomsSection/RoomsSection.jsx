@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './RoomsSection.module.css'
 import Lightbox from '../Lightbox/Lightbox'
+import BookingModal from '../BookingModal/BookingModal'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -92,6 +93,7 @@ export default function RoomsSection() {
   const gridRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [lightbox, setLightbox] = useState({ roomIndex: null, photoIndex: null })
+  const [bookingRoom, setBookingRoom] = useState(null)
 
   const openLightbox = (roomIndex, photoIndex = 0) => {
     setLightbox({ roomIndex, photoIndex })
@@ -261,14 +263,22 @@ export default function RoomsSection() {
                         <span className={styles.priceNum}>{room.price}</span>
                         <span className={styles.priceCur}>₴ / ніч</span>
                       </div>
-                      <a
-                        href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.cta}
-                      >
-                        Забронювати
-                      </a>
+                      <div className={styles.ctaButtons}>
+                        <a
+                          href="https://www.booking.com/hotel/ua/boutique-deluxe.uk.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.cta}
+                        >
+                          Забронювати онлайн
+                        </a>
+                        <button
+                          className={styles.ctaBtn}
+                          onClick={() => setBookingRoom(room.name)}
+                        >
+                          Забронювати
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -292,6 +302,12 @@ export default function RoomsSection() {
         index={lightbox.photoIndex}
         onClose={closeLightbox}
         onChange={changePhoto}
+      />
+
+      <BookingModal
+        isOpen={bookingRoom !== null}
+        onClose={() => setBookingRoom(null)}
+        roomName={bookingRoom}
       />
     </>
   )

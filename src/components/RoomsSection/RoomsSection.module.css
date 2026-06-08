@@ -331,6 +331,8 @@
   display: flex;
   align-items: baseline;
   gap: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .priceFrom {
@@ -375,6 +377,37 @@
 }
 
 .cta:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ctaBtn {
+  appearance: none;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  background: transparent;
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid rgba(245, 240, 232, 0.25);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ctaBtn:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
 }
@@ -448,6 +481,21 @@
     width: 18px;
     border-radius: 10px;
     opacity: 1;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .cta,
+  .ctaBtn {
+    text-align: center;
   }
 }
 
